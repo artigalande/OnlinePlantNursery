@@ -1,0 +1,59 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
+<div class="container">
+    <h2 style="margin-top:20px" align="center">Edit Post Detail</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:10%">
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+    <div class="form-group col-md-12">
+      <label >Post Title</label>
+      <input type="text" class="form-control" value="{{blogpost.posttitle}}" name="posttitle" required>
+    </div>
+    </div>
+
+    <div class="form-row">
+    <div class="form-group col-md-6">
+    <label>Post Image</label>
+    <input type="file" class="form-control" name="postimage" value="choose file">
+</div>
+         <div class="form-group col-md-6">
+    <img src="{{blogpost.postimage.url}}" width="100px" height="100px">
+</div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+      <label>Post Details </label>
+      <textarea class="form-control" name="postdetail"  required='true'>{{blogpost.postdetail}}</textarea>
+    </div>
+
+    </div>
+  <script>
+                        CKEDITOR.replace('postdetail');
+                </script>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+
+{% ifequal error "no" %}
+<script>
+    alert('Post detail has been updated.');
+    window.location=('{% url 'edit_blogpost' blogpost.id %}');
+</script>
+{% endifequal %}
+{% ifequal error "yes" %}
+<script>
+    alert('Something went wrong,Try Again...');
+</script>
+{% endifequal %}
+
+{% endblock %}

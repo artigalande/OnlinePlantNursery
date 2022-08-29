@@ -1,0 +1,55 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
+<div class="container">
+    <h2 style="margin-top:20px" align="center">Add Blog Post</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:10%">
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+    <div class="form-group col-md-12">
+      <label >Post Title</label>
+      <input type="text" class="form-control" placeholder="Enter Post Title" name="posttitle" required>
+    </div>
+    </div>
+
+    <div class="form-row">
+    <div class="form-group col-md-12">
+    <label >Post Image</label>
+    <input type="file" class="form-control" name="postimage" value="choose file">
+</div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+      <label>Post Details </label>
+      <textarea class="form-control" name="postdetail"  required='true'></textarea>
+    </div>
+
+    </div>
+  <script>
+                        CKEDITOR.replace('postdetail');
+                </script>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+
+{% ifequal error "no" %}
+<script>
+    alert('Post detail has been saved.');
+    window.location=('{% url 'view_blogpost' %}');
+</script>
+{% endifequal %}
+{% ifequal error "yes" %}
+<script>
+    alert('Something went wrong,Try Again...');
+</script>
+{% endifequal %}
+
+{% endblock %}

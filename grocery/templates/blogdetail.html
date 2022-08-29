@@ -1,0 +1,26 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+
+<style>
+
+</style>
+
+<div class="container mt-5">
+<h2 class = text-center style = "font-family : 'times new roman' ; color : #E6120E">{{blogpost.posttitle}}</h2>
+
+<div class="row mt-5">
+
+  <div class="col-sm-12">
+      <img src="{{blogpost.postimage.url}}" width="100%" height="450px">
+      <p class="mt-1 text-secondary font-weight-bold text-center">{{blogpost.postdate}}</p>
+      {{blogpost.postdetail | safe}}
+  </div>
+
+</div>
+
+</div>
+
+
+{% endblock %}

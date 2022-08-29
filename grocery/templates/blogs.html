@@ -1,0 +1,26 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+
+<style>
+
+</style>
+
+<div class="container-fluid mt-5">
+<h2 class = text-center style = "font-family : 'Monotype Corsiva' ; color : #E6120E">Plant Talk</h2>
+
+<div class="row mt-5">
+    {% for i in blogpost %}
+  <div class="col-sm-4 text-center">
+      <a href = "{% url 'blogdetail' i.id %}"><img src="{{i.postimage.url}}" width="100%" height="300px">
+      <p class="mt-1 text-secondary font-weight-bold">{{i.postdate}}</p>
+      <h3 class="mt-1 font-weight-bold">{{i.posttitle }}</h3></a>
+  </div>
+    {% endfor %}
+</div>
+
+</div>
+
+
+{% endblock %}

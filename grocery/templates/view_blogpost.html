@@ -1,0 +1,36 @@
+{% extends 'navigation.html' %}
+{% block body %}
+<center><h2 style="color:red;margin-top:2%">Manage Blog Post</h2></center><hr>
+<div class="container" style="margin-top:5%">
+<table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>S.No.</th>
+      <th>Post Title</th>
+      <th>Creation Date</th>
+      <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in blogpost %}
+  <tr>
+
+    <td>{{forloop.counter}}</td>
+      <td>{{i.posttitle}}</td>
+      <td>{{i.postdate}}</td>
+    <td><a href="{% url 'edit_blogpost' i.id %}" ><button class="button button1 btn-success">Edit</button></a></td>
+  <td><a href="{% url 'delete_blogpost' i.id %}" onclick="return confirm('Are you sure?')"><button class="button button1 btn-danger">Delete</button></a></td>
+
+  </tr>
+
+    {% endfor %}
+    </tbody>
+
+</table>
+
+ </div>
+
+
+{% endblock %}
